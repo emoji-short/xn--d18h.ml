@@ -28,21 +28,6 @@ const TBody = styled.tbody`
 
 const Td = styled.td`
   white-space: nowrap;
-  overflow: hidden;
-
-  ${({ withFade }) =>
-    withFade &&
-    css`
-      :after {
-        content: '';
-        position: absolute;
-        right: 0;
-        top: 0;
-        height: 100%;
-        width: 56px;
-        background: linear-gradient(to left, white, white, transparent);
-      }
-    `};
 
   :last-child {
     justify-content: space-between;

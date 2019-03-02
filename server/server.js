@@ -69,6 +69,7 @@ app.prepare().then(() => {
   server.get('/report', (req, res) => app.render(req, res, '/report'));
   server.get('/banned', (req, res) => app.render(req, res, '/banned'));
   server.get('/offline', (req, res) => app.render(req, res, '/offline'));
+  server.get('/pricing', (req, res) => app.render(req, res, '/pricing'));
   server.get('/reset-password/:resetPasswordToken?', catchErrors(auth.resetPassword), (req, res) =>
     app.render(req, res, '/reset-password', req.user)
   );
