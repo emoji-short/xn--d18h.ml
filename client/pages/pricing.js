@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import BodyWrapper from '../components/BodyWrapper';
 import { authUser } from '../actions';
+import Button from '../components/Button';
 
 const Wrapper = styled.div`
   display: flex;
@@ -24,12 +25,28 @@ const TableWrapper = styled.div`
 
 const List = styled.ul`
   list-style: none;
-  margin: 84px 0 0;
+  margin: 69px 0 0;
   padding: 0;
 
   li {
-    padding: 33px 33px 0 0;
+    padding: 28px 28px 0 0;
     text-align: right;
+    color: #444;
+  }
+
+  @media only screen and (max-width: 768px) {
+    font-size: 14px;
+    margin: 59px 0 0;
+    li {
+      padding: 25px 20px 0 0;
+    }
+  }
+  @media only screen and (max-width: 510px) {
+    font-size: 13px;
+    margin: 52px 0 0;
+    li {
+      padding: 21px 16px 0 0;
+    }
   }
 `;
 
@@ -46,7 +63,7 @@ const Table = styled.table`
     display: flex;
     flex: 1 1 auto;
     justify-content: space-between;
-    padding: 0 24px;
+    padding: 0 40px;
     text-align: center;
     border-bottom: 1px solid #eaeaea;
   }
@@ -61,12 +78,12 @@ const Table = styled.table`
 
   th,
   td {
-    width: 240px;
+    width: 230px;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 16px 0;
+    padding: 14px 0;
     text-align: center;
   }
 
@@ -74,14 +91,31 @@ const Table = styled.table`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px 0;
+    padding: 14px 0;
     font-size: 19px;
+    color: #666;
 
-    span:last-child {
-      margin-top: 8px;
-      font-size: 18px;
+    span:last-of-type {
+      margin-top: 0px;
+      font-size: 17px;
       font-weight: 300;
-      color: #888;
+      color: #666;
+    }
+
+    :nth-child(2) {
+      color: #42a5f5;
+
+      span:last-child {
+        color: #42a5f5;
+      }
+    }
+
+    :nth-child(3) {
+      color: #7e57c2;
+
+      span:last-child {
+        color: #7e57c2;
+      }
     }
   }
 
@@ -102,16 +136,42 @@ const Table = styled.table`
   }
 
   @media only screen and (max-width: 768px) {
-    font-size: 13px;
-  }
-
-  @media only screen and (max-width: 510px) {
+    font-size: 14px;
     tr {
       padding: 0 16px;
     }
     th,
     td {
+      width: 160px;
       padding: 12px 0;
+    }
+
+    th {
+      font-size: 17px;
+
+      span:last-of-type {
+        font-size: 15px;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 510px) {
+    font-size: 13px;
+    tr {
+      padding: 0 14px;
+    }
+    th,
+    td {
+      width: 140px;
+      padding: 10px 0;
+    }
+
+    th {
+      font-size: 16px;
+
+      span:last-of-type {
+        font-size: 14px;
+      }
     }
   }
 `;
@@ -207,6 +267,19 @@ const PricingPage = () => (
               <td>Yes</td>
             </tr>
           </tbody>
+          <tfoot>
+            <tr>
+              <td>
+                <Button color="gray">Login</Button>
+              </td>
+              <td>
+                <Button>Upgrade</Button>
+              </td>
+              <td>
+                <Button color="purple">Upgrade</Button>
+              </td>
+            </tr>
+          </tfoot>
         </Table>
       </TableWrapper>
     </Wrapper>
