@@ -1,14 +1,15 @@
 const { promisify } = require('util');
 const dns = require('dns');
 const axios = require('axios');
+const URL = require('url');
 const urlRegex = require('url-regex');
 const validator = require('express-validator/check');
-const { subHours } = require('date-fns/');
+const { differenceInMinutes, subHours } = require('date-fns/');
 const { validationResult } = require('express-validator/check');
-const { addCooldown, banUser } = require('../db/user');
+const { addCooldown, banUser, getIPCooldown: getIPCooldownCount } = require('../db/user');
 const { getBannedDomain, getBannedHost, urlCountFromDate } = require('../db/url');
-const config = require('../config');
 const subDay = require('date-fns/sub_days');
+const { addProtocol } = require('../utils');
 
 const dnsLookup = promisify(dns.lookup);
 
@@ -75,6 +76,12 @@ exports.validateUrl = async ({ body, user }, res, next) => {
   const isValidUrl = urlRegex({ exact: true, strict: false }).test(body.target);
   if (!isValidUrl) return res.status(400).json({ error: 'URL is not valid.' });
 
+  // If target is the URL shortener itself
+  const { host } = URL.parse(addProtocol(body.target));
+  if (host === process.env.DEFAULT_DOMAIN) {
+    return res.status(400).json({ error: `${process.env.DEFAULT_DOMAIN} URLs are not allowed.` });
+  }
+
   // Validate password length
   if (body.password && body.password.length > 64) {
     return res.status(400).json({ error: 'Maximum password length is 64.' });
@@ -116,14 +123,27 @@ exports.cooldownCheck = async user => {
   }
 };
 
+exports.ipCooldownCheck = async (req, res, next) => {
+  const cooldonwConfig = Number(process.env.NON_USER_COOLDOWN);
+  if (req.user || !cooldonwConfig) return next();
+  const cooldownDate = await getIPCooldownCount(req.realIp);
+  if (cooldownDate) {
+    const timeToWait = cooldonwConfig - differenceInMinutes(new Date(), cooldownDate);
+    return res
+      .status(400)
+      .json({ error: `Non-logged in users are limited. Wait ${timeToWait} minutes or log in.` });
+  }
+  next();
+};
+
 exports.malwareCheck = async (user, target) => {
   const isMalware = await axios.post(
     `https://safebrowsing.googleapis.com/v4/threatMatches:find?key=${
-      config.GOOGLE_SAFE_BROWSING_KEY
+      process.env.GOOGLE_SAFE_BROWSING_KEY
     }`,
     {
       client: {
-        clientId: config.DEFAULT_DOMAIN.toLowerCase().replace('.', ''),
+        clientId: process.env.DEFAULT_DOMAIN.toLowerCase().replace('.', ''),
         clientVersion: '1.0.0',
       },
       threatInfo: {
@@ -153,9 +173,9 @@ exports.urlCountsCheck = async email => {
     email,
     date: subDay(new Date(), 1).toJSON(),
   });
-  if (count > config.USER_LIMIT_PER_DAY) {
+  if (count > Number(process.env.USER_LIMIT_PER_DAY)) {
     throw new Error(
-      `You have reached your daily limit (${config.USER_LIMIT_PER_DAY}). Please wait 24h.`
+      `You have reached your daily limit (${process.env.USER_LIMIT_PER_DAY}). Please wait 24h.`
     );
   }
 };

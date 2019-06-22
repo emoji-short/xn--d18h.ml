@@ -19,7 +19,7 @@
 * [Setup](#setup)
 * [Browser Extensions](#browser-extensions)
 * [API](#api)
-* [Integrate with ShareX](#sharex)
+* [Integrations](#integrations)
 * [3rd Party API Packages](#3rd-party-api-packages)
 * [Contributing](#contributing)
 
@@ -47,11 +47,13 @@
 You need to have [Node.js](https://nodejs.org/), [Neo4j](https://neo4j.com/) and [Redis](https://redis.io/) installed on your machine.
 
 1. Clone this repository or [download zip](https://github.com/thedevs-network/kutt/archive/develop.zip).
-2. Copy `config.example.js` to `config.js` in both server and client folders and fill them properly.
+2. Copy `.example.env` to `.env`  and fill it properly.
 3. Install dependencies: `npm install`.
 4. Start Neo4j database.
 5. Run for development: `npm run dev`.
 6. Run for production: `npm run build` then `npm start`.
+
+**[Visis our wiki for a more complete setup and development guide.](https://github.com/thedevs-network/kutt/wiki/Setup-and-deployment)**
 
 **Docker:** You can use Docker to run the app. Read [docker-examples](/docker-examples) for more info.
 
@@ -115,9 +117,14 @@ GET /api/url/stats
 Body (or query for GET request)
   * `id`: ID of the shortened URL.
   * `domain` (optional):  Required if a custom domain is used for short URL.
-  
-## ShareX
+
+## Integrations
+
+### ShareX
 You can use Kutt as your default URL shortener in [ShareX](https://getsharex.com/). If you host your custom instance of Kutt, refer to [ShareX wiki](https://github.com/thedevs-network/kutt/wiki/ShareX) on how to setup.
+
+### Alfred Workflow
+Download Kutt's official workflow for [Alfred](https://www.alfredapp.com/) app from [alfred-kutt](https://github.com/thedevs-network/alfred-kutt) repository.
 
 ## 3rd Party API packages
 | Language  | Link                                                       | Description                                       |

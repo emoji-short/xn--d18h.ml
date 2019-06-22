@@ -2,7 +2,6 @@ const bcrypt = require('bcryptjs');
 const _ = require('lodash/');
 const { isAfter, subDays } = require('date-fns');
 const driver = require('./neo4j');
-const config = require('../config');
 const {
   generateShortUrl,
   statsObjectToArray,
@@ -181,7 +180,7 @@ exports.getUrls = ({ user, options, setCount }) =>
             ...record.get('l').properties,
             count: typeof visitCount === 'object' ? visitCount.toNumber() : visitCount,
             password: !!record.get('l').properties.password,
-            shortUrl: `${protocol}${domain || config.DEFAULT_DOMAIN}/${
+            shortUrl: `${protocol}${domain || process.env.DEFAULT_DOMAIN}/${
               record.get('l').properties.id
             }`,
           };
@@ -230,7 +229,7 @@ exports.setCustomDomain = ({ user, customDomain, homepage, useHttps }) =>
             customDomain,
             homepage: homepage || '',
             email: user.email,
-            useHttps,
+            useHttps: !!useHttps,
           }
         )
       )
@@ -448,22 +447,29 @@ exports.urlCountFromDate = ({ date, email }) =>
       .catch(err => reject(err));
   });
 
-exports.banUrl = async ({ id, domain, host, user }) => {
+exports.banUrl = async ({ adminEmail, id, domain, host, user }) => {
   const session = driver.session();
   const userQuery = user
-    ? 'OPTIONAL MATCH (u:USER)-[:CREATED]->(l) SET u.banned = true WITH u ' +
-      'OPTIONAL MATCH (u)-[:CREATED]->(ls:URL) SET ls.banned = true'
+    ? 'OPTIONAL MATCH (u:USER)-[:CREATED]->(l) SET u.banned = true WITH a, u ' +
+      'OPTIONAL MATCH (u)-[:CREATED]->(ls:URL) SET ls.banned = true WITH a, u, ls ' +
+      'WHERE u.email IS NOT NULL MERGE (a)-[:BANNED]->(u) MERGE (a)-[:BANNED]->(ls) '
     : '';
   const domainQuery = domain
-    ? 'MERGE (d:DOMAIN { name: $domain }) ON CREATE SET d.banned = true'
+    ? 'MERGE (d:DOMAIN { name: $domain }) ON CREATE SET d.banned = true WITH a, d ' +
+      'WHERE d.name IS NOT NULL MERGE (a)-[:BANNED]->(d)'
     : '';
-  const hostQuery = host ? 'MERGE (h:HOST { name: $host }) ON CREATE SET h.banned = true' : '';
-  const withL = user || domain || host ? 'WITH l' : '';
+  const hostQuery = host
+    ? 'MERGE (h:HOST { name: $host }) ON CREATE SET h.banned = true WITH a, h ' +
+      'WHERE h.name IS NOT NULL MERGE (a)-[:BANNED]->(h)'
+    : '';
   await session.writeTransaction(tx =>
     tx.run(
       'MATCH (l:URL { id: $id }) WHERE NOT (l)-[:USES]->(:DOMAIN) ' +
-        `SET l.banned = true ${withL} ${userQuery} ${domainQuery} ${hostQuery}`,
+        'MATCH (a:USER) WHERE a.email = $adminEmail ' +
+        'SET l.banned = true WITH l, a MERGE (a)-[:BANNED]->(l) WITH l, a ' +
+        `${userQuery} ${domainQuery} ${hostQuery}`,
       {
+        adminEmail,
         id,
         domain,
         host,
