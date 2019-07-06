@@ -17,6 +17,7 @@ const {
 } = require('./controllers/validateBodyController');
 const auth = require('./controllers/authController');
 const url = require('./controllers/urlController');
+const neo4j = require('./db/neo4j');
 
 require('./cron');
 require('./passport');
@@ -27,10 +28,12 @@ if (process.env.RAVEN_DSN) {
 const catchErrors = fn => (req, res, next) =>
   fn(req, res, next).catch(err => {
     res.status(500).json({ error: 'Sorry an error ocurred. Please try again later.' });
+    neo4j.close();
     if (process.env.RAVEN_DSN) {
       Raven.captureException(err, {
         user: { email: req.user && req.user.email },
       });
+      throw new Error(err);
     } else {
       throw new Error(err);
     }
@@ -79,12 +82,6 @@ app.prepare().then(() => {
   server.get('/verify/:verificationToken?', catchErrors(auth.verify), (req, res) =>
     app.render(req, res, '/verify', req.user)
   );
-
-  // Disabled service worker because of multiple requests
-  // Resulting in duplicated visist count
-  server.get('/sw.js', (_req, res) => {
-    res.sendFile(`${__dirname}/offline/sw.js`);
-  });
 
   /* User and authentication */
   server.post('/api/auth/signup', validationCriterias, validateBody, catchErrors(auth.signup));
