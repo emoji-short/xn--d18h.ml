@@ -121,23 +121,23 @@ const Extensions = () => (
     <Title>Browser extensions.</Title>
     <Wrapper>
       <Link
-        href="https://chrome.google.com/webstore/detail/kutt/pklakpjfiegjacoppcodencchehlfnpd"
+        href="#"
         target="_blank"
         rel="noopener noreferrer"
       >
         <ChromeButton>
           <Icon src="/images/googlechrome.svg" color="#4285f4" />
-          <span>Download for Chrome</span>
+          <span>Download for Chrome (soon)</span>
         </ChromeButton>
       </Link>
       <Link
-        href="https://addons.mozilla.org/en-US/firefox/addon/kutt/"
+        href="#"
         target="_blank"
         rel="noopener noreferrer"
       >
         <FirefoxButton>
           <Icon src="/images/mozillafirefox.svg" color="#e0890f" />
-          <span>Download for Firefox</span>
+          <span>Download for Firefox (soon)</span>
         </FirefoxButton>
       </Link>
     </Wrapper>

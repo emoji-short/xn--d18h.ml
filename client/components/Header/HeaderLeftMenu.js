@@ -31,7 +31,7 @@ const HeaderLeftMenu = props => {
     <List>
       <HeaderMenuItem>
         <a
-          href="//github.com/thedevs-network/kutt"
+          href="//github.com/emoji-short/xn--d18h.ml"
           target="_blank"
           rel="noopener noreferrer"
           title="GitHub"

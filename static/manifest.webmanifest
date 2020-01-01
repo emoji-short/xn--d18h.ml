@@ -1,10 +1,10 @@
 {
-  "name": "Kutt",
-  "short_name": "Kutt",
+  "name": "xn--d18h.ml",
+  "short_name": "xn--d18h.ml",
   "theme_color": "#f3f3f3",
   "background_color": "#f3f3f3",
   "display": "standalone",
-  "description": "Kutt.it is a free and open source URL shortener with custom domains and stats.",
+  "description": "xn--d18h.ml Emoji URL shortener.",
   "Scope": "/",
   "start_url": "/",
   "icons": [

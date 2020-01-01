@@ -18,7 +18,7 @@ const Underline = styled.span`
 
 const ShortenerTitle = () => (
   <Title>
-    Kutt your links <Underline>shorter</Underline>.
+    Compress your links with <Underline>emoji 🗜</Underline>.
   </Title>
 );
 
