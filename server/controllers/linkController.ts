@@ -35,7 +35,7 @@ const dnsLookup = promisify(dns.lookup);
 
 const generateId = async () => {
   const address = generate(
-    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+    process.env.LINK_ALPHABET || "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
     Number(process.env.LINK_LENGTH) || 6
   );
   const link = await findLink({ address });
