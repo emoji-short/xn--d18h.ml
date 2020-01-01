@@ -1,42 +1,42 @@
 version: '3'
 
 services:
-  kutt:
+  emoji:
     build: .
-    container_name: kutt
+    container_name: emoji
     depends_on:
       - postgres
       - redis
     ports:
-      - "3000:3000"
-    env_file: 
+      - "3000:${PORT}"
+    env_file:
       - .env
     environment:
       DB_HOST: postgres
-      DB_NAME: kutt
-      DB_USER: user
-      DB_PASSWORD: pass
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
     networks:
-      - kutt-network
-    
+      - emoji-network
+
   redis:
     image: redis:alpine
     container_name: redis
     networks:
-      - kutt-network
+      - emoji-network
 
   postgres:
     image: postgres:12-alpine
     container_name: postgres
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: pass
-      POSTGRES_DB: kutt
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
     ports:
-      - "54323:5432"
+      - "54323:${DB_PORT}"
     networks:
-      - kutt-network
+      - emoji-network
 
 networks:
-  kutt-network:
+  emoji-network:
     driver: "bridge"
