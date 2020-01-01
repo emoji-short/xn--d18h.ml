@@ -35,7 +35,7 @@ describe('url actions', () => {
         target: url,
         password: false,
         reuse: false,
-        shortLink: 'http://kutt.it/123'
+        shortLink: 'http://xn--d18h.ml/123'
       };
 
       nock('http://localhost', {
@@ -80,7 +80,7 @@ describe('url actions', () => {
           {
             createdAt: '2018-06-16T16:45:28.607Z',
             id: 'UkEs33',
-            target: 'https://kutt.it/',
+            target: 'https://xn--d18h.ml/',
             password: false,
             count: 0,
             shortLink: 'http://test.com/UkEs33'
@@ -128,7 +128,7 @@ describe('url actions', () => {
           target: 'test.com',
           password: false,
           reuse: false,
-          shortLink: 'http://kutt.it/123'
+          shortLink: 'http://xn--d18h.ml/123'
         }
       ];
 

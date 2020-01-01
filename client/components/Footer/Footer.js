@@ -40,31 +40,28 @@ class Footer extends Component {
       <Wrapper isAuthenticated={this.props.isAuthenticated}>
         {!this.props.isAuthenticated && <ReCaptcha />}
         <Text>
-          Made with love by{' '}
-          <a href="//thedevs.network/" title="The Devs">
-            The Devs
-          </a>
-          .{' | '}
+          Made with 💙
+          {' | '}
           <a
-            href="https://github.com/thedevs-network/kutt"
+            href="https://github.com/emoji-short/xn--d18h.ml"
             title="GitHub"
             target="_blank"
           >
-            GitHub
+            🐙 GitHub
           </a>
           {' | '}
           <a href="/terms" title="Terms of Service">
-            Terms of Service
+            📃 Terms of Service
           </a>
           {' | '}
           <a href="/report" title="Report abuse">
-            Report Abuse
+            🚩 Report Abuse
           </a>
           {process.env.CONTACT_EMAIL && (
             <Fragment>
               {' | '}
               <a href={`mailto:${process.env.CONTACT_EMAIL}`} title="Contact us">
-                Contact us
+                🖋 Contact us
               </a>
             </Fragment>
           )}

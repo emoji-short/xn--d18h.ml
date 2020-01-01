@@ -97,11 +97,11 @@ const SettingsDomain = ({
   <div>
     <h3>Custom domain</h3>
     <p>
-      You can set a custom domain for your short URLs, so instead of <b>kutt.it/shorturl</b> you can
-      have <b>{ process.env.DEFAULT_DOMAIN || "example.com" } /shorturl.</b>
+      You can set a custom domain for your short URLs, so instead of <b>🗜.ml/shorturl</b> you can
+      have <b>link.yourdomain.com/shorturl.</b>
     </p>
     <p>
-      Point your domain A record to <b>192.64.116.170</b> then add the domain via form below:
+      Point your domain CNAME record to <b>xn--d18h.ml</b> then add the domain via form below:
     </p>
     {settings.customDomain && !settings.domainInput ? (
       <div>

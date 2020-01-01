@@ -33,10 +33,10 @@ describe('url reducer', () => {
     const item = {
       createdAt: '2018-06-12T19:23:00.272Z',
       id: 'YufjdS',
-      target: 'https://kutt.it/',
+      target: 'https://xn--d18h.ml/',
       password: false,
       reuse: false,
-      shortLink: 'https://kutt.it/YufjdS'
+      shortLink: 'https://xn--d18h.ml/YufjdS'
     };
 
     const state = reducer(initialState, {
@@ -102,18 +102,18 @@ describe('url reducer', () => {
       {
         createdAt: '2018-06-12T19:23:00.272Z',
         id: 'YufjdS',
-        target: 'https://kutt.it/',
+        target: 'https://xn--d18h.ml/',
         password: false,
         reuse: false,
-        shortLink: 'https://kutt.it/YufjdS'
+        shortLink: 'https://xn--d18h.ml/YufjdS'
       },
       {
         createdAt: '2018-06-12T19:51:56.435Z',
         id: '1gCdbC',
-        target: 'https://kutt.it/',
+        target: 'https://xn--d18h.ml/',
         password: false,
         reuse: false,
-        shortLink: 'https://kutt.it/1gCdbC'
+        shortLink: 'https://xn--d18h.ml/1gCdbC'
       }
     ];
 
@@ -137,18 +137,18 @@ describe('url reducer', () => {
         {
           createdAt: '2018-06-12T19:23:00.272Z',
           id: 'YufjdS',
-          target: 'https://kutt.it/',
+          target: 'https://xn--d18h.ml/',
           password: false,
           reuse: false,
-          shortLink: 'https://kutt.it/YufjdS'
+          shortLink: 'https://xn--d18h.ml/YufjdS'
         },
         {
           createdAt: '2018-06-12T19:51:56.435Z',
           id: '1gCdbC',
-          target: 'https://kutt.it/',
+          target: 'https://xn--d18h.ml/',
           password: false,
           reuse: false,
-          shortLink: 'https://kutt.it/1gCdbC'
+          shortLink: 'https://xn--d18h.ml/1gCdbC'
         }
       ],
       isShortened: true,
@@ -170,10 +170,10 @@ describe('url reducer', () => {
     expect(state.list).to.not.include({
       createdAt: '2018-06-12T19:23:00.272Z',
       id: 'YufjdS',
-      target: 'https://kutt.it/',
+      target: 'https://xn--d18h.ml/',
       password: false,
       reuse: false,
-      shortLink: 'https://kutt.it/YufjdS'
+      shortLink: 'https://xn--d18h.ml/YufjdS'
     });
   });
 
