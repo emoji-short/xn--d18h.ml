@@ -44,10 +44,10 @@ You need to have [Node.js](https://nodejs.org/), [PostgreSQL](https://www.postgr
 
 1. Clone this repository `git clone https://github.com/emoji-short/xn--d18h.ml`.
 2. Rename `.example.env` to `.env` and fill it properly.
-3. Install dependencies: `yarn add`.
-4. Run for development: `yarn run dev`.
-5. Run for production: `yarn run build` then `yarn run prod`.
-6. If you want run application with PM2 `yarn global add pm2` then `yarn start`.
+3. Install dependencies: `npm install`.
+4. Run for development: `npm run dev`.
+5. Run for production: `npm run build` then `npm run prod`.
+6. If you want run application with PM2 `npm install -g pm2` then `npm start`.
 
 ### Docker
 
@@ -129,7 +129,7 @@ Body (or query for GET request)
 
 ### ShareX
 
-You can use 🗜.ml as your default URL shortener in [ShareX](https://getsharex.com/). If you host your custom instance of 🗜.ml, refer to [ShareX wiki](https://github.com/thedevs-network/kutt/wiki/ShareX) on how to setup.
+You can use 🗜.ml as your default URL shortener in [ShareX](https://getsharex.com/). If you host your custom instance of 🗜.ml.
 
 ## 3rd Party packages
 | Language   | Link                                                       | Description                                         |

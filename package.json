@@ -7,7 +7,7 @@
     "test": "mocha --compilers js:@babel/register ./client/**/__test__/*.js",
     "docker:build": "docker build -t xn--d18h.ml .",
     "docker:run": "docker run -p 3000:3000 --env-file .env -d xn--d18h.ml:latest",
-    "dev": "nodemon server/server.ts",
+    "dev": "JWT_SECRET=testkey nodemon server/server.ts",
     "build": "next build client/ && rimraf production-server && tsc --project tsconfig.server.json && copyfiles -f \"server/mail/*.html\" production-server/mail",
     "start": "NODE_ENV=production pm2-runtime production-server/server.js",
     "prod": "NODE_ENV=production node production-server/server.js",

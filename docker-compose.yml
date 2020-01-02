@@ -4,6 +4,7 @@ services:
   emoji:
     build: .
     container_name: emoji
+    restart: on-failure:10
     depends_on:
       - postgres
       - redis

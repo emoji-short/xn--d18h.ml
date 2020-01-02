@@ -100,7 +100,7 @@ const SettingsApi = ({ apikey, generateKey, loader, isCopied, onCopy }) => (
         {apikey ? 'Regenerate' : 'Generate'} key
       </Button>
     </ApiKeyWrapper>
-    <Link href="https://github.com/thedevs-network/kutt#api" title="API Docs" target="_blank">
+    <Link href="https://github.com/emoji-short/xn--d18h.ml#api" title="API Docs" target="_blank">
       Read API docs
     </Link>
   </Wrapper>

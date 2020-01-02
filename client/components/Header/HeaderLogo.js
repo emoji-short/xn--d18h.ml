@@ -40,7 +40,7 @@ const HeaderLogo = props => {
   return (
     <LogoImage>
       <a href="/" title="Homepage" onClick={goTo}>
-        🗜 | { process.env.DEFAULT_DOMAIN || "Kutt.it" }
+        🗜 | { process.env.DEFAULT_DOMAIN || "Shortener" }
       </a>
     </LogoImage>
   );

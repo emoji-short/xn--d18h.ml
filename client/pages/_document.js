@@ -26,7 +26,7 @@ class AppDocument extends Document {
           <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
           <meta
             name="description"
-            content={ (process.env.DEFAULT_DOMAIN || "kutt.it") + "is a free and open source URL shortener with custom domains and stats." }
+            content={ (process.env.DEFAULT_DOMAIN || "Shortener") + "is a free and open source URL shortener with custom domains and stats." }
           />
           <link
             href="https://fonts.googleapis.com/css?family=Nunito:300,400,700"
@@ -43,24 +43,24 @@ class AppDocument extends Document {
           <meta property="fb:app_id" content="123456789" />
           <meta property="og:url" content={
             ((process.env.CUSTOM_DOMAIN_USE_HTTPS && process.env.CUSTOM_DOMAIN_USE_HTTPS === "false") ? "http" : "https")
-              + "://" + (process.env.DEFAULT_DOMAIN || "kutt.it")
+              + "://" + (process.env.DEFAULT_DOMAIN || "Shortener")
           } />
           <meta property="og:type" content="website" />
-          <meta property="og:title" content={ (process.env.DEFAULT_DOMAIN || "kutt.it") } />
+          <meta property="og:title" content={ (process.env.DEFAULT_DOMAIN || "Shortener") } />
           <meta property="og:image" content={
             ((process.env.CUSTOM_DOMAIN_USE_HTTPS && process.env.CUSTOM_DOMAIN_USE_HTTPS === "false") ? "http" : "https")
-              + "://" + (process.env.DEFAULT_DOMAIN || "kutt.it") + "/images/card.png"
+              + "://" + (process.env.DEFAULT_DOMAIN || "Shortener") + "/images/card.png"
           } />
           <meta property="og:description" content="Free & Open Source Modern URL Shortener" />
           <meta name="twitter:url" content={
             ((process.env.CUSTOM_DOMAIN_USE_HTTPS && process.env.CUSTOM_DOMAIN_USE_HTTPS === "false") ? "http" : "https")
-              + "://" + (process.env.DEFAULT_DOMAIN || "kutt.it")
+              + "://" + (process.env.DEFAULT_DOMAIN || "Shortener")
           } />
-          <meta name="twitter:title" content={ (process.env.DEFAULT_DOMAIN || "kutt.it")} />
+          <meta name="twitter:title" content={ (process.env.DEFAULT_DOMAIN || "Shortener")} />
           <meta name="twitter:description" content="Free & Open Source Modern URL Shortener" />
           <meta name="twitter:image" content={
             ((process.env.CUSTOM_DOMAIN_USE_HTTPS && process.env.CUSTOM_DOMAIN_USE_HTTPS === "false") ? "http" : "https")
-              + "://" + (process.env.DEFAULT_DOMAIN || "kutt.it") + "/images/card.png" 
+              + "://" + (process.env.DEFAULT_DOMAIN || "Shortener") + "/images/card.png" 
           } />
 
           {this.props.styleTags}

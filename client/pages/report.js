@@ -106,7 +106,7 @@ class ReportPage extends Component {
               type="text"
               placeholder= {
                 ((process.env.CUSTOM_DOMAIN_USE_HTTPS && process.env.CUSTOM_DOMAIN_USE_HTTPS === "false") ? "http" : "https")
-                  + "://" + (process.env.DEFAULT_DOMAIN || "kutt.it") + "/example"
+                  + "://" + (process.env.DEFAULT_DOMAIN || "Shortener") + "/example"
               }
               value={url}
               onChange={this.onChange}

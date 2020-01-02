@@ -10,7 +10,7 @@ class MyApp extends App {
     return (
       <Container>
         <Head>
-          <title>{ process.env.DEFAULT_DOMAIN || "Kutt.it" } | Emoji Open Source URL shortener.</title>
+          <title>{ process.env.DEFAULT_DOMAIN || "Shortener" } | Emoji Open Source URL shortener.</title>
         </Head>
         <Provider store={reduxStore}>
           <Component {...pageProps} />

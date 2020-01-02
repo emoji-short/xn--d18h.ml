@@ -50,7 +50,7 @@ const Title = styled.h3`
 
 const Features = () => (
   <Section>
-    <Title>Kutting edge features.</Title>
+    <Title>Compressing edge features.</Title>
     <Wrapper>
       <FeaturesItem title="Managing links" icon="edit">
         Create, protect and delete your links and monitor them with detailed statistics.
