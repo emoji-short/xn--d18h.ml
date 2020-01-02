@@ -1,6 +1,6 @@
 FROM node:12-alpine
 
-# Setting working directory. 
+# Setting working directory.
 WORKDIR /usr/src/app
 
 # Installing dependencies
@@ -12,6 +12,8 @@ COPY . .
 
 # Building app
 RUN npm run build
+# Install PM2 globally
+RUN npm install pm2 -g
 
 EXPOSE 3000
 

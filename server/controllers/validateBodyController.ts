@@ -154,7 +154,8 @@ export const ipCooldownCheck: RequestHandler = async (req, res, next) => {
 
 export const malwareCheck = async (user: User, target: string) => {
   const isMalware = await axios.post(
-    `https://safebrowsing.googleapis.com/v4/threatMatches:find?key=${process.env.GOOGLE_SAFE_BROWSING_KEY}`,
+    `https://safebrowsing.googleapis.com/v4/threatMatches:find?key=` +
+      process.env.GOOGLE_SAFE_BROWSING_KEY,
     {
       client: {
         clientId: process.env.DEFAULT_DOMAIN.toLowerCase().replace(".", ""),
@@ -195,7 +196,8 @@ export const urlCountsCheck = async (user: User) => {
   });
   if (count > Number(process.env.USER_LIMIT_PER_DAY)) {
     throw new Error(
-      `You have reached your daily limit (${process.env.USER_LIMIT_PER_DAY}). Please wait 24h.`
+      `You have reached your daily limit (${process.env.USER_LIMIT_PER_DAY}).` +
+        ` Please wait 24h.`
     );
   }
 };

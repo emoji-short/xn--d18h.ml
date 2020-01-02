@@ -50,9 +50,7 @@ const neo4j = NEO4J.driver(
     } else {
       queue.add(() => {
         const endTime = Date.now();
-        console.log(
-          `✅ Done! It took ${(endTime - startTime) / 1000} seconds.`
-        );
+        console.log(`Done! It took ${(endTime - startTime) / 1000} seconds.`);
       });
     }
   }

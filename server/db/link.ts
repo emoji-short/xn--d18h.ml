@@ -88,11 +88,13 @@ export const createVisit = async (params: ICreateVisit) => {
       .update({
         updated_at: new Date().toISOString(),
         countries: knex.raw(
-          "jsonb_set(countries, '{??}', (COALESCE(countries->>?,'0')::int + 1)::text::jsonb)",
+          "jsonb_set(countries, '{??}', " +
+            "(COALESCE(countries->>?,'0')::int + 1)::text::jsonb)",
           [data.country, data.country]
         ),
         referrers: knex.raw(
-          "jsonb_set(referrers, '{??}', (COALESCE(referrers->>?,'0')::int + 1)::text::jsonb)",
+          "jsonb_set(referrers, '{??}', " +
+            "(COALESCE(referrers->>?,'0')::int + 1)::text::jsonb)",
           [data.referrer, data.referrer]
         )
       });

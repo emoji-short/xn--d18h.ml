@@ -52,7 +52,8 @@ const postgres = knex({
                 "OPTIONAL MATCH (v)-[:LOCATED_IN]->(c) " +
                 "OPTIONAL MATCH (v)-[:REFERRED_BY]->(r) " +
                 "OPTIONAL MATCH (v)-[:VISITED_IN]->(dd) " +
-                "WITH l, u, d, COLLECT([b.browser, o.os, c.country, r.referrer, dd.date]) as stats " +
+                "WITH l, u, d, COLLECT([b.browser, o.os, c.country, " +
+                "r.referrer, dd.date]) as stats " +
                 "RETURN l, u.email as email, d.name as domain, stats",
               { limit: limit, skip: index * limit }
             )
@@ -173,8 +174,9 @@ const postgres = knex({
                   queue.add(() => {
                     const endTime = Date.now();
                     console.log(
-                      `✅ Done! It took ${(endTime - startTime) /
-                        1000} seconds.`
+                      `Done! It took` +
+                        (endTime - startTime) / 1000 +
+                        ` seconds.`
                     );
                   });
                 }
