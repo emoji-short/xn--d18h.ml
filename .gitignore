@@ -9,6 +9,7 @@ server/old.config.js
 production-server
 .idea/
 yarn.lock
+*.rdb
 
 # General
 .DS_Store
