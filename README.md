@@ -44,9 +44,10 @@ You need to have [Node.js](https://nodejs.org/), [PostgreSQL](https://www.postgr
 
 1. Clone this repository `git clone https://github.com/emoji-short/xn--d18h.ml`.
 2. Rename `.example.env` to `.env` and fill it properly.
-3. Install dependencies: `npm install`.
-4. Run for development: `npm run dev`.
-5. Run for production: `npm run build` then `npm start`.
+3. Install dependencies: `yarn add`.
+4. Run for development: `yarn run dev`.
+5. Run for production: `yarn run build` then `yarn run prod`.
+6. If you want run application with PM2 `yarn global add pm2` then `yarn start`.
 
 ### Docker
 
@@ -72,7 +73,7 @@ URL {
   target {string} Where the URL will redirect to
   password {boolean} Whether or not a password is required
   count {number} The amount of visits to this URL
-  shortUrl {string} The shortened link (Usually https://🗜.ml/id)
+  shortUrl {string} The shortened link (Usually https://xn--d18h.ml/id)
 }
 ```
 

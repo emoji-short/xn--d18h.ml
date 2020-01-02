@@ -54,9 +54,7 @@ const postgres = knex({
       session.close();
       queue.add(() => {
         const endTime = Date.now();
-        console.log(
-          `✅ Done! It took ${(endTime - startTime) / 1000} seconds.`
-        );
+        console.log(`Done! It took ${(endTime - startTime) / 1000} seconds.`);
       });
     },
     onError(error) {

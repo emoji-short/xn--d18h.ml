@@ -28,7 +28,8 @@ const postgres = knex({
   const session = neo4j.session();
   session
     .run(
-      "MATCH (d:DOMAIN) OPTIONAL MATCH (u)-[:OWNS]->(d) RETURN d as domain, u.email as email"
+      "MATCH (d:DOMAIN) OPTIONAL MATCH (u)-[:OWNS]->(d) RETURN d as domain, " +
+        "u.email as email"
     )
     .subscribe({
       onNext(record) {
@@ -74,9 +75,7 @@ const postgres = knex({
         session.close();
         queue.add(() => {
           const endTime = Date.now();
-          console.log(
-            `✅ Done! It took ${(endTime - startTime) / 1000} seconds.`
-          );
+          console.log(`Done! It took ${(endTime - startTime) / 1000} seconds.`);
         });
       },
       onError(error) {
