@@ -1,6 +1,6 @@
 {
   "name": "xn--d18h.ml",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Emoji URL shortener.",
   "main": "./production-server/server.js",
   "scripts": {
