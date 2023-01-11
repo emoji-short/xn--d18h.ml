@@ -55,7 +55,7 @@
     "js-cookie": "^2.2.0",
     "jsonwebtoken": "^8.4.0",
     "jwt-decode": "^2.2.0",
-    "knex": "^0.19.5",
+    "knex": "^2.4.0",
     "morgan": "^1.9.1",
     "ms": "^2.1.1",
     "nanoid": "^1.3.4",
